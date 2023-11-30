@@ -90,13 +90,13 @@ export default function Home() {
       <main className='bg-white px-8'>
         <section className='min-h-screen'>
           <nav className='pt-1 flex justify-between'>
-            <Image src={design} width={250} height={250}/>
+            <a href="#accueil"><Image src={design} width={250} height={250}/></a>
             <ul className='flex items-center'>
-              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#contact">Accueil</a></h1></li>
-              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#contact">À vendre</a></h1></li>
-              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#contact">Location</a></h1></li>
-              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#contact">Gestion</a></h1></li>
-              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#contact">Estimation</a></h1></li>
+              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#accueil">Accueil</a></h1></li>
+              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#ventes">À vendre</a></h1></li>
+              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#location">Location</a></h1></li>
+              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#gestion">Gestion</a></h1></li>
+              <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#estimation">Estimation</a></h1></li>
               <li><h1 className='text-xl font-Metropolis-Regular hover:underline transition duration-500 px-8'><a href="#contact">Contact</a></h1></li>
             </ul>
           </nav>
@@ -108,7 +108,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='py-10' id="services">
+        <section className='py-10' id="presentation">
             <h3 className='text-5xl py-5 px-12'>SAVOIR FAIRE & SAVOIR VOIR</h3>
               <div className='w-1/2 px-20 ml-auto'>
                 <p className='text-md py-2 leading-8 text-gray-800'>
@@ -119,7 +119,7 @@ export default function Home() {
                 L’achat de votre résidence, principale ou secondaire : qu’y a-t-il de plus beau dans une aventure comme celle-ci ? il n’y a aucun doute, le voyage est aussi important que la destination.
                 </p>
                 <p className='text-xl py-2 leading-8 text-black text-right mx-6 underline'>
-                  <a href="#services">Nos biens en vente</a>
+                  <a className='hover:text-gray-600' href="#ventes">Nos biens en vente</a>
                 </p>
               </div>
               <div className='flex justify-around pt-14'>
@@ -138,16 +138,14 @@ export default function Home() {
                 <br />
                 BORDAS, c’est aussi une rencontre avec des artistes contemporains, du Street art, des sculpteurs et des peintres venant de tous les continents car les univers de l’art et de l’immobilier se conjuguent autour d’un mot : l’esthétisme
                 </p>
-                <p className='text-xl py-2 leading-8 text-black underline'>
-                  <a href="#services">Notre histoire</a>
-                </p>
+                <a href="#contact" className='text-xl py-2 leading-8 text-black underline hover:text-gray-600'>Nous contacter</a>
               </div>
         </section>
         
         <footer className='absolute left-0 bg-white text-center text-gray-700 w-full'>
         <hr className="my-6 border-black" />
           <div className='my-5'>
-            <a href="#"><Image className='mx-auto' src={design} width={250} height={250}/></a>
+            <a href="#accueil"><Image className='mx-auto' src={design} width={250} height={250}/></a>
             <p className='text-black'>Horaires : </p>
             <p>Du lundi au samedi de 9h00 à 19h00</p>
 
