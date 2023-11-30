@@ -1,53 +1,91 @@
 'use client'
-import Image from 'next/image'
-import {BsEnvelopeFill, BsInstagram, BsMessenger} from 'react-icons/bs'
-import design from "../../public/design.png"
-import premier from "../../public/premier.jpg"
-import deuxieme from "../../public/deuxieme.jpg"
-import troisieme from "../../public/troisieme.jpeg"
-import quatre from "../../public/quatre.jpeg"
-import cinq from "../../public/cinq.jpeg"
-import six from "../../public/six.jpeg"
-import { useState } from "react"
-import { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { BsEnvelopeFill, BsInstagram, BsMessenger } from 'react-icons/bs';
+import design from '../../public/design.png';
+import premier from '../../public/premier.jpg';
+import deuxieme from '../../public/deuxieme.jpg';
+import troisieme from '../../public/troisieme.jpeg';
+import quatre from '../../public/quatre.jpeg';
+import cinq from '../../public/cinq.jpeg';
+import six from '../../public/six.jpeg';
 import emailjs from 'emailjs-com';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export default function Home() {
-
-  const notify = () => toast("Wow so easy !");
+  const notify = () => toast('Wow so easy!');
 
   const [darkMode, setDarkMode] = useState(false);
 
-    const form = useRef();
+  const form = useRef();
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-    
-        emailjs.sendForm('service_ok34pd9', 'template_yr9yz4q', form.current, 'pGbqVmTvTEyeeMMts')
-        .then((result) => {
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_ok34pd9', 'template_yr9yz4q', form.current, 'pGbqVmTvTEyeeMMts')
+      .then(
+        (result) => {
           toast.success('Email sent!', {
-            position: "top-right",
+            position: 'top-right',
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: darkMode ? "dark" : "light",
-            });
-        }, (error) => {
-            console.log(error.text);
-        });
+            theme: darkMode ? 'dark' : 'light',
+          });
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
 
-        e.target.reset()
-      };
+    e.target.reset();
+  };
 
-  
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const imageContainerB = document.querySelector('.image-container-b');
+      const imageContainerA = document.querySelector('.image-container-a');
+      const textSection = document.querySelector('#stop');
+      const textSectionPosition = textSection.offsetTop;
+
+      if (scrollPosition < textSectionPosition) {
+        imageContainerA.style.transform = `translateY(${scrollPosition / 2}px)`;
+        imageContainerB.style.transform = `translateY(-${scrollPosition / 2}px)`;
+      } else {
+        imageContainerA.style.transform = `translateY(${textSectionPosition / 2}px)`;
+        imageContainerB.style.transform = `translateY(-${textSectionPosition / 2}px)`;
+      }
+    };
+
+    const handleImageScroll = () => {
+      const scrollPosition = window.scrollY;
+      const imageContainerC = document.querySelector('.image-container-c');
+      const imageContainerD = document.querySelector('.image-container-d');
+      imageContainerC.style.transform = `translateY(-${scrollPosition / 10}px)`;
+      imageContainerD.style.transform = `translateY(${scrollPosition / 10}px)`;
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', handleImageScroll);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('scroll', handleImageScroll);
+      }
+    };
+  }, [darkMode]);
+
   return (
-    <div className={darkMode ? "dark" : ""}>
+    <div className={darkMode ? 'dark' : ''}>
       <ToastContainer />
       <main className='bg-white px-8'>
         <section className='min-h-screen'>
@@ -125,38 +163,6 @@ export default function Home() {
                 <small>&copy; MELVYN WEBDESIGN. All right reserved.</small>
             </div>
           </div>
-          <script>
-              if (typeof window !== 'undefined') {
-                window.addEventListener('scroll', () => {
-                  const scrollPosition = window.scrollY;
-                  const imageContainerB = document.querySelector('.image-container-b');
-                  imageContainerB.style.transform = `translateY(-${scrollPosition / 2}px)`;
-                  const imageContainerA = document.querySelector('.image-container-a');
-                  imageContainerA.style.transform = `translateY(${scrollPosition / 2}px)`;
-                  const textSection = document.querySelector('#stop'); // Remplacez avec l'ID de votre section de texte
-                const textSectionPosition = textSection.offsetTop;
-
-                if (scrollPosition < textSectionPosition) {
-                  // Si la position de défilement est inférieure à la position de la section de texte
-                  imageContainerA.style.transform = `translateY(${scrollPosition / 2}px)`;
-                } else {
-                  // Si la position de défilement est égale ou supérieure à la position de la section de texte
-                  imageContainerA.style.transform = `translateY(${(textSectionPosition) / 2}px)`;
-                  imageContainerB.style.transform = `translateY(${-(textSectionPosition) / 2}px)`;
-                }
-                })
-              }
-
-                if (typeof window !== 'undefined') {
-                window.addEventListener('scroll', () => {
-                  const scrollPosition = window.scrollY;
-                  const imageContainerC = document.querySelector('.image-container-c');
-                  imageContainerC.style.transform = `translateY(-${scrollPosition / 10}px)`;
-                  const imageContainerD = document.querySelector('.image-container-d');
-                  imageContainerD.style.transform = `translateY(${scrollPosition / 10}px)`;
-                })
-              }
-          </script>
         </footer>
       </main>
     </div>
